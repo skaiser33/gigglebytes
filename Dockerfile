@@ -1,5 +1,3 @@
-
-# Fetching the minified node image on Alpine Linux
 FROM node:alpine
 
 # Declaring env
@@ -12,13 +10,11 @@ WORKDIR /gigglebytes
 COPY . .
 
 # Installing dependencies
+RUN apk add --no-cache postgresql-client
 RUN npm install
 
-# Installing pm2 globally
-# RUN npm install pm2 -g
-
 # Starting our application
-CMD node server.js
+CMD ["node", "server.js"]
 
 # Exposing server port
 EXPOSE 3000/tcp
